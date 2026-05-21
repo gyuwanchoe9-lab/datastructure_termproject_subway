@@ -16,6 +16,8 @@ Term Project — 서울 지하철 1~5호선 최단 경로 탐색기
 import sys
 import os
 
+sys.stdout.reconfigure(encoding='utf-8')
+
 # Term_project/ 를 모듈 검색 경로에 추가
 sys.path.insert(0, os.path.dirname(__file__))
 

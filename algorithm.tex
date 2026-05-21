@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\title{Seoul Subway Shortest Path Finder\\
+\large Multi-source Dijkstra's Algorithm}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{algorithm}
+\caption{Multi-source Dijkstra($G$, \textit{starts}, \textit{ends})}
+\begin{algorithmic}[1]
+
+\Require Graph $G$, start node set \textit{starts}, end node set \textit{ends}
+\Ensure $(cost,\ path)$ — minimum travel time and route, or $(\infty,\ [\ ])$
+
+\State $dist \gets \{\}$,\quad $parent \gets \{\}$,\quad $counter \gets 0$
+\State $pq \gets$ empty min-heap
+
+\For{each $s \in \textit{starts}$}
+    \State $dist[s] \gets 0$,\quad $parent[s] \gets \textbf{nil}$
+    \State \Call{Push}{$pq,\ (0,\ counter,\ s)$}
+    \State $counter \gets counter + 1$
+\EndFor
+
+\While{$pq \neq \emptyset$}
+    \State $(cost,\ \_,\ u) \gets$ \Call{Pop}{$pq$}
+
+    \If{$dist.\text{get}(u,\ \infty) < cost$}
+        \State \textbf{continue} \Comment{stale entry, skip}
+    \EndIf
+
+    \If{$u \in \textit{ends}$} \Comment{destination reached}
+        \State $path \gets [\ ]$,\quad $cur \gets u$
+        \While{$cur \neq \textbf{nil}$}
+            \State \Call{Append}{$path,\ cur$}
+            \State $cur \gets parent[cur]$
+        \EndWhile
+        \State \Return $(cost,\ \Call{Reverse}{path})$
+    \EndIf
+
+    \For{each $(v,\ w) \in G.\Call{Neighbors}{u}$}
+        \State $new\_cost \gets cost + w$
+        \If{$new\_cost < dist.\text{get}(v,\ \infty)$}
+            \State $dist[v] \gets new\_cost$,\quad $parent[v] \gets u$
+            \State \Call{Push}{$pq,\ (new\_cost,\ counter,\ v)$}
+            \State $counter \gets counter + 1$
+        \EndIf
+    \EndFor
+\EndWhile
+
+\State \Return $(\infty,\ [\ ])$
+
+\end{algorithmic}
+\end{algorithm}
+
+\end{document}
