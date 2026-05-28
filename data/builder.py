@@ -14,7 +14,7 @@ def build_subway() -> SubwayGraph:
     노선 데이터를 읽어 SubwayGraph를 생성하고 반환한다.
 
     - 인접역 사이 간선 가중치: 2분
-    - 환승 간선 가중치       : 2분
+    - 환승 간선 가중치 : 2분
     """
     g = SubwayGraph()
 

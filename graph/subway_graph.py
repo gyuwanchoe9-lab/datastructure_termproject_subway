@@ -3,7 +3,7 @@ from collections import defaultdict
 
 class SubwayGraph:
     """
-    인접 리스트 기반 가중 무방향 그래프.
+    인접 리스트 기반 가중 무향 그래프.
 
     노드 : (호선 번호, 역 이름)  예) (1, "신도림")
     간선 : 인접역 이동 또는 환승, 기본 가중치 2분

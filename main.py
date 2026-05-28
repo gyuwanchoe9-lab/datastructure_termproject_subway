@@ -44,28 +44,9 @@ def find_route(subway, start_name: str, end_name: str):
     return cost, path, None
 
 
-def run_demos(subway):
-    demos = [
-        ("소요산",  "인천"),
-        ("방화",    "마천"),
-        ("대화",    "오이도"),
-        ("강남",    "종로3가"),
-        ("신도림",  "왕십리"),
-        ("천안",    "노원"),
-    ]
-    print("\n[Demo Routes]")
-    for s, e in demos:
-        print(f"\n  {s}  →  {e}")
-        cost, path, err = find_route(subway, s, e)
-        if err:
-            print_error(err)
-        else:
-            print_route(path, cost)
-
-
 def run_interactive(subway):
     print(SEP)
-    print("  직접 검색  (종료: q)")
+    print("  경로 검색  (종료: q)")
     print(SEP)
     while True:
         s = input("\n  출발역: ").strip()
